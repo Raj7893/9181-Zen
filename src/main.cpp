@@ -20,7 +20,7 @@ motor DriveFrontRight = motor(PORT3, ratio6_1, false);
 motor DriveBackLeft = motor(PORT6, ratio6_1, true);
 motor DriveBackRight = motor(PORT4, ratio6_1, false);
 controller Controller1 = controller(primary);
-motor hi = motor(PORT10, ratio36_1, true);
+
 
 
 /*---------------------------------------------------------------------------*/
