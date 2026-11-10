@@ -15,10 +15,14 @@ using namespace vex;
 competition Competition;
 
 // define your global instances of motors and other devices here
+// All driveTrainMotors
 motor DriveFrontLeft = motor(PORT9, ratio6_1, true);
 motor DriveFrontRight = motor(PORT3, ratio6_1, false);
 motor DriveBackLeft = motor(PORT6, ratio6_1, true);
 motor DriveBackRight = motor(PORT4, ratio6_1, false);
+// DriveTrain MotorGroups
+motor_group driveLeft = motor_group(DriveBackLeft, DriveFrontLeft);
+motor_group driveRight = motor_group(DriveBackRight, DriveFrontRight);
 controller Controller1 = controller(primary);
 
 
@@ -66,15 +70,40 @@ void autonomous(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
+
+void arcade_drive() 
+{
+
+}
+
+void tank_drive() 
+{
+
+}
+
 void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
-    
+  float throttle = Controller1.Axis3.value();
+  if (throttle < 5 && throttle > -5)
+  {
+   throttle = 0;
+  }
+ float turn = Controller1.Axis1.value();
+  if (turn < 5 && turn > -5)
+  {
+   turn = 0;
+  }
 
+
+    
+    
     int driveType = 1;
 
     if (driveType == 1)
     {
+
+
     // Split arcade 
     DriveBackLeft.spin(forward, (Controller1.Axis3.value() + Controller1.Axis1.value()),percent);
     DriveFrontLeft.spin(forward, (Controller1.Axis3.value() + Controller1.Axis1.value()),percent);
