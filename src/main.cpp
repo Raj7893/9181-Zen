@@ -71,15 +71,7 @@ void autonomous(void) {
 /*---------------------------------------------------------------------------*/
 
 
-void arcade_drive() 
-{
 
-}
-
-void tank_drive() 
-{
-
-}
 
 void usercontrol(void) {
   // User control code here, inside the loop
@@ -88,36 +80,34 @@ void usercontrol(void) {
   if (throttle < 5 && throttle > -5)
   {
    throttle = 0;
+   
   }
  float turn = Controller1.Axis1.value();
   if (turn < 5 && turn > -5)
   {
    turn = 0;
   }
-
-
-    
-    
-    int driveType = 1;
-
-    if (driveType == 1)
-    {
-
-
-    // Split arcade 
-    DriveBackLeft.spin(forward, (Controller1.Axis3.value() + Controller1.Axis1.value()),percent);
-    DriveFrontLeft.spin(forward, (Controller1.Axis3.value() + Controller1.Axis1.value()),percent);
-    DriveFrontRight.spin(forward, (Controller1.Axis3.value() - Controller1.Axis1.value()),percent);
-    DriveBackRight.spin(forward, (Controller1.Axis3.value() - Controller1.Axis1.value()),percent);
-    }
-  if (driveType == 0)
+  if (Controller1.ButtonL2.pressing())
   {
-    //tankdrive
-    DriveBackLeft.spin(forward, Controller1.Axis3.value(), percent);
-    DriveFrontLeft.spin(forward, Controller1.Axis3.value(), percent);
-    DriveFrontRight.spin(forward, Controller1.Axis2.value(), percent);
-    DriveBackRight.spin(forward, Controller1.Axis2.value(), percent);
+    throttle = throttle/2;
+    turn = turn/2;
   }
+float leftPow = throttle + turn ;
+float RightPow = throttle - turn;
+
+
+    driveLeft.spin(fwd,leftPow,percent);
+    driveRight.spin(fwd,RightPow,percent);
+    
+   if (leftPow == 0)
+   {
+    driveLeft.stop(brake);
+
+   }
+   if (RightPow == 0)
+   {
+    driveRight.stop(brake);
+   }
     
 
     wait(20, msec); // Sleep the task for a short amount of time to
