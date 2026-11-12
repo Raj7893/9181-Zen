@@ -20,6 +20,7 @@ motor DriveFrontLeft = motor(PORT9, ratio6_1, true);
 motor DriveFrontRight = motor(PORT3, ratio6_1, false);
 motor DriveBackLeft = motor(PORT6, ratio6_1, true);
 motor DriveBackRight = motor(PORT4, ratio6_1, false);
+motor test = motor(PORT16, ratio18_1, true);
 // DriveTrain MotorGroups
 motor_group driveLeft = motor_group(DriveBackLeft, DriveFrontLeft);
 motor_group driveRight = motor_group(DriveBackRight, DriveFrontRight);
@@ -98,7 +99,7 @@ float RightPow = throttle - turn;
 
     driveLeft.spin(fwd,leftPow,percent);
     driveRight.spin(fwd,RightPow,percent);
-    
+    // break the drivetrain so 
    if (leftPow == 0)
    {
     driveLeft.stop(brake);
