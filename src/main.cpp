@@ -25,6 +25,8 @@ motor test = motor(PORT16, ratio18_1, true);
 motor_group driveLeft = motor_group(DriveBackLeft, DriveFrontLeft);
 motor_group driveRight = motor_group(DriveBackRight, DriveFrontRight);
 controller Controller1 = controller(primary);
+//claw
+motor clawmotor = motor (PORT5,false);
 
 
 
@@ -109,11 +111,18 @@ float RightPow = throttle - turn;
    {
     driveRight.stop(brake);
    }
-    
-
+    if (Controller1.ButtonL1.pressing())
+  {
+    clawmotor.spin(fwd,100,percent);
+  }
+if (Controller1.ButtonL2.pressing())
+  {
+    clawmotor.spin(reverse,100,percent);
+  }
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
   }
+  
 }
 
 //
