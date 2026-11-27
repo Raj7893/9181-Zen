@@ -27,7 +27,10 @@ motor_group driveRight = motor_group(DriveBackRight, DriveFrontRight);
 controller Controller1 = controller(primary);
 //claw
 motor clawmotor = motor (PORT5,ratio18_1,false);
-
+// lift
+motor leflift = motor(PORT6,ratio18_1,false);
+motor rightLift = motor(PORT7,ratio18_1,false);
+motor_group liftmotors = motor_group(leflift,rightLift);
 
 
 
@@ -123,6 +126,15 @@ float RightPow = throttle - turn;
 if (Controller1.ButtonL2.pressing())
   {
     clawmotor.spin(reverse,100,percent);
+  }
+  //lift
+   if (Controller1.ButtonR1.pressing())
+  {
+    liftmotors.spin(fwd,100,percent);
+  }
+  else if (Controller1.ButtonR2.pressing())
+  {
+    liftmotors.spin(reverse,100 , percent);
   }
   
     wait(20, msec); // Sleep the task for a short amount of time to
