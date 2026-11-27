@@ -136,6 +136,10 @@ if (Controller1.ButtonL2.pressing())
   {
     liftmotors.spin(reverse,100 , percent);
   }
+  else
+  {
+    liftmotors.stop(hold);
+  }
   
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
