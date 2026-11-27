@@ -29,7 +29,7 @@ controller Controller1 = controller(primary);
 motor clawmotor = motor (PORT5,ratio18_1,false);
 // lift
 motor leflift = motor(PORT6,ratio18_1,false);
-motor rightLift = motor(PORT7,ratio18_1,false);
+motor rightLift = motor(PORT7,ratio18_1,true);
 motor_group liftmotors = motor_group(leflift,rightLift);
 
 
@@ -140,7 +140,15 @@ if (Controller1.ButtonL2.pressing())
   {
     liftmotors.stop(hold);
   }
-  
+  // LIFT HARDSTOP
+    if(liftmotors.position(degrees) >= 77)
+    {
+      liftmotors.stop(hold);
+    }
+  if(liftmotors.position(degrees) <= 920)
+    {
+      liftmotors.stop(hold);
+    }
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
   }
