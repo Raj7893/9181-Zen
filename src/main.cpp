@@ -141,11 +141,11 @@ if (Controller1.ButtonL2.pressing())
     liftmotors.stop(hold);
   }
   // LIFT HARDSTOP
-    if(liftmotors.position(degrees) >= 77)
+    if(liftmotors.position(degrees) <= -2)
     {
       liftmotors.stop(hold);
     }
-  if(liftmotors.position(degrees) <= 920)
+  if(liftmotors.position(degrees) >= 920)
     {
       liftmotors.stop(hold);
     }
