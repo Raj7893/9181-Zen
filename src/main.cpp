@@ -116,14 +116,15 @@ float RightPow = throttle - turn;
   {
     clawmotor.spin(fwd,100,percent);
   }
+  else
+  {
+    clawmotor.stop(hold);
+  }
 if (Controller1.ButtonL2.pressing())
   {
     clawmotor.spin(reverse,100,percent);
   }
-  else 
-  {
-    clawmotor.stop(hold);
-  }
+  
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
   }
